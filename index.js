@@ -47,6 +47,31 @@ app.get('/update-cobj', (req, res) => {
 // * Code for Route 2 goes here
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
+app.post('/update-cobj', async (req, res) => {
+    const newFenceProject = {
+        properties: {
+            name: req.body.name,
+            fence_type: req.body.fence_type,
+            city: req.body.city
+        }
+    };
+
+    const createFenceProject =
+        'https://api.hubapi.com/crm/v3/objects/2-268272831';
+
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+
+    try {
+        await axios.post(createFenceProject, newFenceProject, { headers });
+        res.redirect('/');
+    } catch (error) {
+        console.error(error.response?.data || error.message);
+        res.status(500).send('Error creating Fence Project record.');
+    }
+});
 
 // * Code for Route 3 goes here
 
