@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+
+  body
+    h1= title
+
+    a(href='/') Return to the homepage
+
+    form(action='/update-cobj' method='POST')
+      div
+        label(for='name') Name
+        input#name(type='text' name='name' required)
+
+      div
+        label(for='fence_type') Fence Type
+        input#fence_type(type='text' name='fence_type' required)
+
+      div
+        label(for='city') City
+        input#city(type='text' name='city' required)
+
+      button(type='submit') Create Fence Project
